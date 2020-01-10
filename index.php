@@ -13,9 +13,15 @@ require_once("vendor/autoload.php");
 $f3 = Base::instance(); // :: = static method called instance on the base class
                         // assigning to a reference variable $f3
 
-// Define a default route (like a home page) -- NEEDS TO GO BEFORE RUN EXECUTION
+// Define a DEFAULT route (like a home page) -- NEEDS TO GO BEFORE RUN EXECUTION
 $f3->route('GET /', function() {
-    echo '<h1>Hello World</h1>'; // cannot navigate there with index.php in the browser
+    // create a new view object by instantiating the fat-free templating class
+    $view = new Template();
+
+    // on the object template we render the home page through this route
+    echo $view->render('views/home.html');
+
+    //echo '<h1>Hello World</h1>'; // cannot navigate there with index.php in the browser
 });
 
 // Run fat-free (execute run method on the object that we created)
